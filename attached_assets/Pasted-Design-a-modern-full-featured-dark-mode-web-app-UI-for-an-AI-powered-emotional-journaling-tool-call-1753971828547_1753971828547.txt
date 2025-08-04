@@ -1,0 +1,58 @@
+Design a modern, full-featured dark mode web app UI for an AI-powered emotional journaling tool called MindMatch. This app helps users check in with how they’re feeling, analyze their mood using AI, receive a motivational quote, and track their emotional trends over time. It should look and feel like a polished, production-ready SaaS product you’d show to an employer.
+🧱 Base Layout
+The layout should be clean and intuitive with a responsive single-page dashboard structure, optimized for both desktop and mobile.
+Use a rich dark background (#121212) with glowing, soft accents like teal, soft blue, or purple.
+Design should include rounded corners, glassmorphism cards, and subtle animations or transitions for user interactions.
+Use a professional but friendly typeface like Inter or Poppins, with great contrast for readability.
+Include a fixed or sticky header with app branding: “MindMatch 🧘‍♀️”.
+🔍 Feature Section 1: Mood Input & Analysis
+A large text area input for users to write how they’re feeling today.
+Below that, a visually prominent primary button labeled:
+🔍 Analyze My Mood
+Once submitted, dynamically reveal a result section that displays:
+Detected Mood (e.g., “😞 Anxious”, “😊 Happy”, “😠 Frustrated”)
+Mood tag should be stylized with emoji and color-coded pill-style labels.
+Quote Recommendation
+Show a motivational quote in a card (with author).
+Button: 🔁 Show Another Quote
+Button group: ✅ Log Entry | 📅 View Mood History
+📥 Feature Section 2: Log Entry (After Mood Analysis)
+A polished modal window or expandable section for logging an entry.
+Includes:
+Auto-filled date
+Mood tag (read-only from result)
+Small editable field for journal notes or daily reflections.
+Button: 💾 Save Entry
+Confirmation UI: subtle success animation or toast (e.g., “Entry Saved!”).
+📊 Feature Section 3: Mood History Dashboard
+Accessible by clicking 📅 View Mood History.
+Design a dashboard-like page or card grid layout.
+Each past entry should appear as a card showing:
+Date
+Detected Mood with emoji
+User note preview
+Quote shown that day
+Optional: delete or edit icon
+Include a chart area at the top:
+Use a line chart or bar graph showing mood trends over time.
+X-axis: dates | Y-axis: sentiment score or mood category
+Label moods with emojis (e.g., 😔😐😃)
+🗣️ Feature: Voice Input
+Add a small mic button next to the input area.
+When clicked, allow the user to speak their feelings, auto-transcribed into the input field using Web Speech API.
+🔐 Authentication
+Design a simple login/sign-up modal:
+Email / password
+Light glowing input fields, centered card layout
+📱 Mobile Optimization
+Mobile-first responsive design.
+On smaller screens:
+Collapse mood history into a vertical scroll list
+Charts should be swipeable or collapsible
+Input + results should stack and fill width
+🧩 Component Feel & Design Style
+Smooth transitions (fade in quotes, slide-in modals)
+Gentle microinteractions on button hovers and quote refresh
+Animated emoji reveals based on mood (e.g., pulse or bounce)
+Subtle use of shadows and gradients for modern polish
+floating action button (FAB) for “New Entry” on mobile

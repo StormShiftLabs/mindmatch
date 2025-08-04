@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(247, 85%, 61%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+
+  /* Dark mode colors - MindMatch theme */
+  --dark-bg: hsl(240, 15%, 7%);
+  --dark-card: hsl(240, 12%, 11%);
+  --dark-border: hsl(240, 8%, 20%);
+  
+  /* Mood colors */
+  --mood-happy: hsl(142, 76%, 36%);
+  --mood-sad: hsl(221, 83%, 53%);
+  --mood-angry: hsl(0, 84%, 60%);
+  --mood-anxious: hsl(25, 95%, 53%);
+  --mood-excited: hsl(316, 73%, 52%);
+  --mood-neutral: hsl(45, 93%, 47%);
+}
+
+.dark {
+  --background: hsl(240, 15%, 7%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 8%, 20%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 12%, 11%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 12%, 11%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 8%, 20%);
+  --input: hsl(240, 8%, 20%);
+  --primary: hsl(247, 85%, 61%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 8%, 20%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 8%, 20%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  html.dark body {
+    background: var(--dark-bg);
+  }
+}
+
+@layer components {
+  /* Glass effect for cards */
+  .glass-effect {
+    background: rgba(30, 27, 60, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  /* Mood gradient */
+  .mood-gradient {
+    background: linear-gradient(135deg, hsl(247, 85%, 61%) 0%, hsl(264, 83%, 70%) 100%);
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(247, 85%, 61%), hsl(264, 83%, 70%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Mood colors */
+  .mood-happy { color: var(--mood-happy); }
+  .mood-sad { color: var(--mood-sad); }
+  .mood-angry { color: var(--mood-angry); }
+  .mood-anxious { color: var(--mood-anxious); }
+  .mood-excited { color: var(--mood-excited); }
+  .mood-neutral { color: var(--mood-neutral); }
+
+  .bg-mood-happy { background-color: var(--mood-happy); }
+  .bg-mood-sad { background-color: var(--mood-sad); }
+  .bg-mood-angry { background-color: var(--mood-angry); }
+  .bg-mood-anxious { background-color: var(--mood-anxious); }
+  .bg-mood-excited { background-color: var(--mood-excited); }
+  .bg-mood-neutral { background-color: var(--mood-neutral); }
+
+  /* Hover states with opacity */
+  .hover\:bg-mood-happy\/10:hover { background-color: rgba(16, 185, 129, 0.1); }
+  .hover\:bg-mood-sad\/10:hover { background-color: rgba(59, 130, 246, 0.1); }
+  .hover\:bg-mood-angry\/10:hover { background-color: rgba(239, 68, 68, 0.1); }
+  .hover\:bg-mood-anxious\/10:hover { background-color: rgba(249, 115, 22, 0.1); }
+  .hover\:bg-mood-excited\/10:hover { background-color: rgba(236, 72, 153, 0.1); }
+  .hover\:bg-mood-neutral\/10:hover { background-color: rgba(245, 158, 11, 0.1); }
+
+  /* Border colors for mood */
+  .border-mood-happy { border-color: var(--mood-happy); }
+  .border-mood-sad { border-color: var(--mood-sad); }
+  .border-mood-angry { border-color: var(--mood-angry); }
+  .border-mood-anxious { border-color: var(--mood-anxious); }
+  .border-mood-excited { border-color: var(--mood-excited); }
+  .border-mood-neutral { border-color: var(--mood-neutral); }
+
+  /* Hover border colors */
+  .hover\:border-mood-happy:hover { border-color: var(--mood-happy); }
+  .hover\:border-mood-sad:hover { border-color: var(--mood-sad); }
+  .hover\:border-mood-angry:hover { border-color: var(--mood-angry); }
+  .hover\:border-mood-anxious:hover { border-color: var(--mood-anxious); }
+  .hover\:border-mood-excited:hover { border-color: var(--mood-excited); }
+  .hover\:border-mood-neutral:hover { border-color: var(--mood-neutral); }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes pulseGentle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-pulse-gentle {
+    animation: pulseGentle 2s infinite;
+  }
+
+  /* Hover scale effect */
+  .hover-scale {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Custom scrollbar for dark theme */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(240, 8%, 15%);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(240, 5%, 40%);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(240, 5%, 50%);
+  }
+
+  /* Enhanced mobile responsiveness */
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    /* Mobile-first tab layout */
+    .tabs-list {
+      padding: 0.25rem;
+    }
+    
+    /* Touch-friendly buttons */
+    button {
+      min-height: 44px;
+      padding: 0.75rem 1rem;
+    }
+    
+    /* Mobile card spacing */
+    .card {
+      margin-bottom: 1rem;
+    }
+    
+    /* Stack layout on mobile */
+    .lg\:grid-cols-3 {
+      grid-template-columns: 1fr !important;
+      gap: 1rem;
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .lg\:grid-cols-3 {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .lg\:col-span-2 {
+      grid-column: span 2;
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    button:active {
+      transform: scale(0.98);
+      transition: transform 0.1s ease;
+    }
+  }
+}
