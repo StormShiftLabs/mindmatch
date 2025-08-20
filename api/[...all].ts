@@ -33,10 +33,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Health
-app.get('/health', (_req, res) => res.json({ ok: true }));
+app.get('/api/health', (_req, res) => res.json({ ok: true }));
 
-// Quotes: GET /api/quotes/random?mood=happy -> here path is '/quotes/random'
-app.get('/quotes/random', (req, res) => {
+// Quotes: GET /api/quotes/random?mood=happy
+app.get('/api/quotes/random', (req, res) => {
   const mood = String(req.query.mood || '');
   let candidates = QUOTES;
   if (mood) {
@@ -48,8 +48,8 @@ app.get('/quotes/random', (req, res) => {
   res.json({ id, ...q });
 });
 
-// Mood entries: GET /api/mood-entries -> '/mood-entries'
-app.get('/mood-entries', (req, res) => {
+// Mood entries: GET /api/mood-entries
+app.get('/api/mood-entries', (req, res) => {
   const userId = 'demo-user';
   const limit = Number(req.query.limit || 50);
   const items = moodEntries
@@ -59,8 +59,8 @@ app.get('/mood-entries', (req, res) => {
   res.json(items);
 });
 
-// Mood entries: POST /api/mood-entries -> '/mood-entries'
-app.post('/mood-entries', (req, res) => {
+// Mood entries: POST /api/mood-entries
+app.post('/api/mood-entries', (req, res) => {
   try {
     const { mood, reflection = null, aiAnalysisEnabled = true } = req.body || {};
     const allowed: MoodType[] = ['happy','sad','angry','anxious','excited','neutral'];
@@ -86,8 +86,8 @@ app.post('/mood-entries', (req, res) => {
   }
 });
 
-// Analytics: GET /api/analytics -> '/analytics'
-app.get('/analytics', (_req, res) => {
+// Analytics: GET /api/analytics
+app.get('/api/analytics', (_req, res) => {
   const userId = 'demo-user';
   const all = moodEntries.filter(e => e.userId === userId);
   const today = new Date();
@@ -102,6 +102,11 @@ app.get('/analytics', (_req, res) => {
   const avg = withSentiment.length ? withSentiment.reduce((s, e) => s + (e.sentiment || 0), 0) / withSentiment.length : 3;
   const aiCount = all.filter(e => !!e.aiInsights && Array.isArray((e.aiInsights as any)?.insights)).length;
   res.json({ totalEntries: all.length, happinessScore: Math.round(avg * 10) / 10, streak, aiInsights: aiCount });
+});
+
+// 404 for unknown /api routes
+app.use('/api', (_req, res) => {
+  res.status(404).json({ error: 'Not found' });
 });
 
 export default app;
