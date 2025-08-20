@@ -3,9 +3,6 @@
   "outputDirectory": "dist/public",
   "installCommand": "npm install",
   "framework": "vite",
-  "functions": {
-    "dist/index.js": {}
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
