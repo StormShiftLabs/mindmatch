@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertMoodEntrySchema, type MoodEntry } from "@shared/schema";
+import { insertMoodEntrySchema, type MoodEntry } from "../shared/schema";
 import { analyzeMoodWithAI, generatePersonalizedQuote, generatePatternInsights } from "./services/openai";
 
 export async function registerRoutes(app: Express): Promise<Server> {
