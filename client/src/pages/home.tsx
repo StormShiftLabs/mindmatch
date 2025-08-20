@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Quote, BarChart3, Calendar, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -24,6 +24,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("journal");
   const { user } = useAuth();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   // Fetch daily quote
   const { data: quote, isLoading: quoteLoading } = useQuery<MotivationalQuote>({
@@ -32,17 +33,19 @@ export default function Home() {
 
   // Generate new quote mutation
   const newQuoteMutation = useMutation({
-    mutationFn: async () => {
-      return apiRequest("GET", "/api/quotes/random");
+    mutationFn: async (): Promise<MotivationalQuote> => {
+      const res = await apiRequest("GET", "/api/quotes/random");
+      return res.json();
     },
-    onSuccess: (response) => {
-      // The response is already the quote data
+    onSuccess: (newQuote) => {
+      // Update the cached query so UI reflects the new quote immediately
+      queryClient.setQueryData(["/api/quotes/random"], newQuote);
       toast({
         title: "New quote generated",
         description: "Here's a fresh motivational quote for you!",
       });
     },
-    onError: (error) => {
+    onError: (error: any) => {
       toast({
         title: "Failed to get new quote",
         description: error.message,
