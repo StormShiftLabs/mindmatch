@@ -3,6 +3,11 @@
   "outputDirectory": "dist/public",
   "installCommand": "npm install",
   "framework": "vite",
+  "functions": {
+    "api/[...all].ts": {
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/[...all]" },
     { "source": "/(.*)", "destination": "/index.html" }
